@@ -1,0 +1,21 @@
+services:
+  simple-blog:
+    container_name: cont-simple-blog
+    image: pakavisavero/simple-blog:v.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    external: true

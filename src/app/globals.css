@@ -2,26 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode variables (default) */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark mode variables */
+.dark {
+  --background: #171717;
+  --foreground: #ffffff;
 }
 
+/* Apply the background and foreground to html and body */
+html, body {
+  background-color: var(--background); /* Ensure background is applied to both html and body */
+  color: var(--foreground); /* Ensure text color is applied */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Ensure the body takes up the full height */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
+/* Ensure Tailwind utilities are applied correctly */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* Additional theme variables (optional) */
+@layer base {
+  /* Default colors */
+  :root {
+    --card: #ffffff;
+    --card-foreground: #000000;
+    --popover: #ffffff;
+    --popover-foreground: #000000;
+    --primary: #0a0a0a;
+    --primary-foreground: #ffffff;
+    --secondary: #ededed;
+    --secondary-foreground: #0a0a0a;
+    --muted: #f5f5f5;
+    --muted-foreground: #333333;
+    --accent: #f0f0f0;
+    --accent-foreground: #000000;
+    --destructive: #e53e3e;
+    --destructive-foreground: #ffffff;
+    --border: #e5e7eb;
+    --input: #f9fafb;
+    --ring: #3b82f6;
+    --radius: 0.5rem;
+  }
+
+  /* Dark mode colors */
+  .dark {
+    --background: #171717;
+    --foreground: #ffffff;
+    --card: #1f1f1f;
+    --card-foreground: #ffffff;
+    --popover: #2a2a2a;
+    --popover-foreground: #ffffff;
+    --primary: #ffffff;
+    --primary-foreground: #171717;
+    --secondary: #2c2c2c;
+    --secondary-foreground: #ffffff;
+    --muted: #3a3a3a;
+    --muted-foreground: #aaaaaa;
+    --accent: #444444;
+    --accent-foreground: #ffffff;
+    --destructive: #e53e3e;
+    --destructive-foreground: #ffffff;
+    --border: #2e2e2e;
+    --input: #2e2e2e;
+    --ring: #3b82f6;
+  }
+
+  /* Apply border to all elements */
+  * {
+    @apply border-border;
+  }
+
+  /* Apply background and text color to the body */
+  body {
+    @apply bg-background text-foreground;
   }
 }
